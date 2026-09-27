@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>درگاه پرداخت | PayGate</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./output.css">
+</head>
+
+<body class="min-h-screen bg-slate-100 text-slate-800">
+
+    <main class="flex min-h-screen items-center justify-center px-4 py-8 sm:px-6">
+
+        <div class="w-full max-w-xl rounded-3xl bg-white p-5 shadow-2xl shadow-slate-200/80 sm:p-8 lg:p-10">
+
+            <div class="mb-8 flex items-center justify-between">
+
+                <div class="flex items-center gap-3">
+                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-600 text-white shadow-lg shadow-violet-600/20">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
+                            <path d="M7 17L17 7M9 7H17V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <p class="text-lg font-bold text-slate-900">PayGate</p>
+                        <p class="text-xs text-slate-400">درگاه پرداخت امن</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-xs text-slate-500">
+                    <span class="h-2 w-2 animate-pulse rounded-full bg-emerald-500"></span>
+                    اتصال امن
+                </div>
+
+            </div>
+
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold text-slate-900">
+                    پرداخت اینترنتی
+                </h1>
+
+                <p class="mt-2 text-sm text-slate-500">
+                    اطلاعات پرداخت خود را وارد کنید
+                </p>
+            </div>
+
+            <form id="paymentForm" class="space-y-5">
+
+                <div>
+                    <label for="amount" class="mb-2 block text-sm font-semibold text-slate-700">
+                        مبلغ پرداخت
+                    </label>
+
+                    <div class="relative">
+                        <input
+                            id="amount"
+                            type="text"
+                            inputmode="numeric"
+                            placeholder="مبلغ را وارد کنید"
+                            class="h-14 w-full rounded-xl border border-slate-200 bg-white px-4 pl-20 text-left text-base outline-none transition placeholder:text-slate-300 focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                            dir="ltr"
+                            required
+                        >
+
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">
+                            تومان
+                        </span>
+                    </div>
+
+                    <p id="amountPreview" class="mt-2 text-xs text-slate-400"></p>
+                </div>
+
+                <div>
+                    <label for="cardNumber" class="mb-2 block text-sm font-semibold text-slate-700">
+                        شماره کارت
+                    </label>
+
+                    <input
+                        id="cardNumber"
+                        type="text"
+                        inputmode="numeric"
+                        maxlength="19"
+                        placeholder="شماره کارت ۱۶ رقمی"
+                        class="h-14 w-full rounded-xl border border-slate-200 bg-white px-4 text-left text-base tracking-widest outline-none transition placeholder:text-right placeholder:tracking-normal placeholder:text-slate-300 focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                        dir="ltr"
+                        autocomplete="cc-number"
+                        required
+                    >
+
+                    <p id="cardError" class="mt-2 hidden text-xs text-red-500">
+                        شماره کارت باید ۱۶ رقم باشد.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+
+                    <div>
+                        <label for="expiry" class="mb-2 block text-sm font-semibold text-slate-700">
+                            تاریخ انقضا
+                        </label>
+
+                        <input
+                            id="expiry"
+                            type="text"
+                            inputmode="numeric"
+                            maxlength="7"
+                            placeholder="MM / YY"
+                            class="h-14 w-full rounded-xl border border-slate-200 bg-white px-4 text-left outline-none transition placeholder:text-slate-300 focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                            dir="ltr"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label for="cvv2" class="mb-2 block text-sm font-semibold text-slate-700">
+                            CVV2
+                        </label>
+
+                        <input
+                            id="cvv2"
+                            type="password"
+                            inputmode="numeric"
+                            maxlength="4"
+                            placeholder="••••"
+                            class="h-14 w-full rounded-xl border border-slate-200 bg-white px-4 text-left tracking-widest outline-none transition placeholder:text-slate-300 focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                            dir="ltr"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div>
+                    <label for="holder" class="mb-2 block text-sm font-semibold text-slate-700">
+                        نام دارنده کارت
+                    </label>
+
+                    <input
+                        id="holder"
+                        type="text"
+                        placeholder="نام و نام خانوادگی"
+                        class="h-14 w-full rounded-xl border border-slate-200 bg-white px-4 outline-none transition placeholder:text-slate-300 focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="captcha" class="mb-2 block text-sm font-semibold text-slate-700">
+                        کد امنیتی
+                    </label>
+
+                    <div class="flex gap-3">
+
+                        <div class="flex h-14 min-w-[110px] select-none items-center justify-center rounded-xl bg-slate-900 px-4 text-xl font-bold tracking-[0.3em] text-white">
+                            <span id="captchaCode"></span>
+                        </div>
+
+                        <input
+                            id="captcha"
+                            type="text"
+                            inputmode="numeric"
+                            maxlength="4"
+                            placeholder="کد را وارد کنید"
+                            class="h-14 min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-4 outline-none transition placeholder:text-slate-300 focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                            required
+                        >
+
+                        <button
+                            id="refreshCaptcha"
+                            type="button"
+                            class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-slate-200 text-slate-500 transition hover:border-violet-300 hover:bg-violet-50 hover:text-violet-600"
+                        >
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24">
+                                <path d="M20 11A8.1 8.1 0 0 0 5.5 6.5L4 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                <path d="M4 4V8H8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 13A8.1 8.1 0 0 0 18.5 17.5L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                <path d="M20 20V16H16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between rounded-xl bg-amber-50 px-4 py-3 text-xs text-amber-700">
+
+                    <div class="flex items-center gap-2">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M12 7V12L15 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+
+                        <span>زمان باقی‌مانده</span>
+                    </div>
+
+                    <strong id="timer" dir="ltr">09:59</strong>
+
+                </div>
+
+                <button
+                    id="payButton"
+                    type="submit"
+                    class="flex h-14 w-full items-center justify-center gap-3 rounded-xl bg-violet-600 text-sm font-bold text-white shadow-lg shadow-violet-600/20 transition hover:bg-violet-700 active:scale-[.99]"
+                >
+                    <span>پرداخت و تکمیل خرید</span>
+
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24">
+                        <path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <div class="flex items-center justify-center gap-2 text-[11px] text-slate-400">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24">
+                        <path d="M7 10V8A5 5 0 0 1 17 8V10M6 10H18V20H6V10Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
+                    اطلاعات پرداخت شما رمزنگاری می‌شود
+                </div>
+
+            </form>
+
+            <div id="successState" class="hidden py-8 text-center">
+
+                <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 text-emerald-500">
+                    <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24">
+                        <path d="M5 12.5L9.5 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+
+                <h2 class="mt-6 text-2xl font-extrabold text-slate-900">
+                    پرداخت با موفقیت انجام شد
+                </h2>
+
+                <p class="mt-2 text-sm text-slate-500">
+                    تراکنش شما با موفقیت ثبت شد.
+                </p>
+
+                <div class="mx-auto mt-7 max-w-sm rounded-2xl bg-slate-50 p-5 text-right">
+
+                    <div class="flex justify-between border-b border-slate-200 pb-4 text-sm">
+                        <span class="text-slate-400">مبلغ</span>
+                        <strong id="successAmount"></strong>
+                    </div>
+
+                    <div class="flex justify-between pt-4 text-sm">
+                        <span class="text-slate-400">شماره پیگیری</span>
+                        <strong id="trackingCode" dir="ltr"></strong>
+                    </div>
+
+                </div>
+
+                <button
+                    id="backButton"
+                    type="button"
+                    class="mt-6 h-12 w-full rounded-xl border border-slate-200 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+                >
+                    بازگشت به پرداخت
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+</html>
